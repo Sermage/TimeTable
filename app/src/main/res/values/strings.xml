@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">TimeTable</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="are_you_ready_for_exams">Are you ready for exams?</string>
+    <string name="days_title">Days</string>
+    <string name="hours_title">Hours</string>
+    <string name="minutes_title">Minutes</string>
+    <string name="classes_title">Classes</string>
+    <string name="homework_title">Homework</string>
+    <string name="countdown_finish_title">Hope you\'re ready for exams</string>
+    <string name="open_in">Open in</string>
+</resources>
