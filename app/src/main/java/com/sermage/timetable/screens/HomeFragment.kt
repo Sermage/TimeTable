@@ -1,23 +1,34 @@
 package com.sermage.timetable.screens
 
 import android.os.Bundle
-import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.sermage.timetable.R
+import com.sermage.timetable.items.*
+import com.sermage.timetable.data.pojo.Exams
+import com.sermage.timetable.data.pojo.Homework
+import com.sermage.timetable.data.pojo.Lesson
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.GroupieViewHolder
+import com.xwray.groupie.Section
 import kotlinx.android.synthetic.main.fragment_home.view.*
-import java.text.ParseException
-import java.text.SimpleDateFormat
-import java.util.*
+import androidx.fragment.app.viewModels
+import com.xwray.groupie.kotlinandroidextensions.Item
 
 
 class HomeFragment : Fragment() {
 
+    private lateinit var recyclerViewMain:RecyclerView
+    private lateinit var groupAdapter:GroupAdapter<GroupieViewHolder>
+    private val viewModel:HomeViewModel by viewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        groupAdapter= GroupAdapter()
 
     }
 
@@ -30,35 +41,36 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val tvDays=view.tvDays
-        val tvHours=view.tvHours
-        val tvMinutes=view.tvMinutes
-        val tvTimerTitle=view.tvTimerTitle
-
-        var futureMinDate = Date()
-        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
-        try {
-            futureMinDate = sdf.parse("2021-01-12")
-        } catch (e: ParseException) {
-            e.printStackTrace()
+        view.recyclerViewHome.adapter=groupAdapter
+        Section().apply {
+            add(TimerItem(Exams(("2021-01-12"))))
+            groupAdapter.add(this)
         }
 
-        // Here futureMinDate.time Returns the number of milliseconds since January 1, 1970, 00:00:00 GM
-        // So we need to subtract the millis from current millis to get actual millis
-        object : CountDownTimer(futureMinDate.time - System.currentTimeMillis(), 1000) {
+        Section().apply {
+            setHeader(HeaderItem("Homework"))
+            add(MainHomeItem(getHomework()))
+            groupAdapter.add(this)
+        }
 
-            override fun onTick(millisUntilFinished: Long) {
-                val minutes = (millisUntilFinished / (1000 * 60)) % 60
-                val hours = (millisUntilFinished / (1000 * 60 * 60)) % 24
-                val days = ((millisUntilFinished / (1000 * 60 * 60)) / 24).toInt()
-                tvDays.text=String.format("%02d",days)
-                tvHours.text=String.format("%02d",hours)
-                tvMinutes.text=String.format("%02d",minutes)
+        viewModel.getLessons().observe(viewLifecycleOwner,{
+            val listItems= mutableListOf<Item>()
+            for(lesson in it){
+                listItems.add(ClassItem(lesson))
             }
-
-            override fun onFinish() {
-                tvTimerTitle.text=getString(R.string.countdown_finish_title)
+            val classes=MainHomeItem(listItems)
+            Section().apply {
+                setHeader(HeaderItem("Classes","${it.size} classes today"))
+                add(classes)
+                groupAdapter.add(this)
             }
-        }.start()
+        })
     }
+
+    fun getHomework():List<HomeWorkItem>{
+        val homework1=Homework("Literature",R.drawable.book_shelf_48,"Read scenes 1.1-1.2 of\n the Master and Margarita.")
+        val homework2=Homework("Math",R.drawable.math_icon,"Complete tasks on pages 43-44\n in textbook also you should make graphics")
+        return mutableListOf(HomeWorkItem(homework1), HomeWorkItem(homework2))
+    }
+
 }

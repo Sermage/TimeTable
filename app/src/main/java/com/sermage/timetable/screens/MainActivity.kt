@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         JodaTimeAndroid.init(this)
         val tabLayout: TabLayout = tabLayout
         val viewPager: ViewPager2 = viewPager
+        viewPager.isUserInputEnabled=false
         viewPager.adapter = FragmentPagerAdapter(this)
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             when (position) {

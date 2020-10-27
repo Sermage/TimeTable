@@ -31,7 +31,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             style="@style/TextViewTitleStyle"
-            app:layout_constraintBottom_toTopOf="@+id/imageViewClassIcon"
             app:layout_constraintStart_toEndOf="@id/imageViewClassIcon"
             app:layout_constraintTop_toTopOf="@id/imageViewClassIcon"
             tools:text="History" />
@@ -70,6 +69,7 @@
             />
 
         <LinearLayout
+            android:id="@+id/layoutButtonToSkype"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="horizontal"

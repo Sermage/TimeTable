@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     app:cardBackgroundColor="@color/darkgrey"
     app:cardCornerRadius="30dp"
+   android:layout_margin="24dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -39,6 +40,7 @@
                 app:srcCompat="@android:drawable/ic_menu_recent_history" />
 
             <TextView
+                android:id="@+id/textViewNumberOfDays"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
@@ -61,6 +63,7 @@
             />
 
         <ImageView
+            android:id="@+id/imageViewHomeworkIcon"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:padding="8dp"

@@ -11,4 +11,5 @@
     <string name="countdown_finish_title">Hope you\'re ready for exams</string>
     <string name="open_in">Open in</string>
     <string name="teacher">Teacher:</string>
+    <string name="dash"> - </string>
 </resources>
