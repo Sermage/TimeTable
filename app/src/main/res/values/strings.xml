@@ -12,4 +12,18 @@
     <string name="open_in">Open in</string>
     <string name="teacher">Teacher:</string>
     <string name="dash"> - </string>
+    <string name="classes_today">classes today</string>
+    <string name="class_today">class today</string>
+    <string name="time_title">Today,</string>
+    <string name="notifications_title">Notifications</string>
+    <string name="list_title">List</string>
+    <string name="search_title">Search</string>
+    <string name="filter_title">Filter</string>
+    <string name="user_title">User</string>
+    <string name="small_image_about_lesson">small image about lesson</string>
+    <string name="clock_icon">clock icon</string>
+    <string name="available_for_skype_call">available for skype call</string>
+    <string name="image_about_homework">image about homework</string>
+    <string name="home_title">Home</string>
+    <string name="image_about_additional_lesson">image about additional lesson</string>
 </resources>

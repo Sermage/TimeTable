@@ -5,7 +5,7 @@
     android:layout_margin="24dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
+    android:clickable="false"
     app:cardBackgroundColor="@color/darkgrey"
     app:cardCornerRadius="30dp">
 
@@ -17,14 +17,14 @@
             android:id="@+id/imageViewClassIcon"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:padding="8dp"
             android:layout_margin="36dp"
             android:background="@drawable/round_outline"
+            android:padding="8dp"
+            android:contentDescription="@string/small_image_about_lesson"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:src="@drawable/archery"
-            />
+            tools:src="@drawable/archery" />
 
         <TextView
             android:id="@+id/textViewClassName"
@@ -41,6 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
+            android:contentDescription="@string/clock_icon"
             app:layout_constraintStart_toEndOf="@id/imageViewClassIcon"
             app:layout_constraintTop_toBottomOf="@id/textViewClassName"
             app:srcCompat="@android:drawable/ic_menu_recent_history" />
@@ -91,13 +92,14 @@
             app:layout_constraintGuide_begin="319dp" />
 
         <LinearLayout
-            android:id="@+id/layoutButtonToSkype"
+            android:id="@+id/viewIsRemote"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:rotation="90"
             android:background="@color/blue"
             android:padding="24dp"
+            android:visibility="gone"
             app:layout_constraintStart_toEndOf="@id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -113,6 +115,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginStart="4dp"
+                android:contentDescription="@string/available_for_skype_call"
                 android:src="@drawable/videocam_icon_24"
                 android:layout_gravity="center"
                 />

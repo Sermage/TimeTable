@@ -2,8 +2,8 @@ package com.sermage.timetable.screens
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.res.ResourcesCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.tab_item.view.*
 import net.danlew.android.joda.JodaTimeAndroid
 
-class MainActivity : AppCompatActivity() {
+class AppActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,13 +28,13 @@ class MainActivity : AppCompatActivity() {
             when (position) {
                 0 -> {
                     tab.setCustomView(R.layout.tab_item)
-                    tab.customView?.tab_title?.text = "Home"
+                    tab.customView?.tab_title?.text = getString(R.string.home_title)
                     tab.customView?.tab_icon?.setImageResource(R.drawable.outline_home_white_36dp)
                     tab.customView?.tab_icon?.setColorFilter(resources.getColor(R.color.light_green))
                 }
                 1 -> {
                     tab.setCustomView(R.layout.tab_item)
-                    tab.customView?.tab_title?.text = "Classes"
+                    tab.customView?.tab_title?.text = getString(R.string.classes_title)
                     tab.customView?.tab_icon?.setImageResource(R.drawable.outline_calendar_today_white_24dp)
                     tab.customView?.tab_title?.visibility = View.GONE
                 }

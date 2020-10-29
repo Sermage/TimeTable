@@ -1,12 +1,15 @@
 package com.sermage.timetable.data.pojo
 
-import com.sermage.timetable.R
+import com.sermage.timetable.converterStringToTime
 
+abstract class Lesson:Comparable<Lesson> {
+    abstract val name: String
+    abstract val teacher: String
+    abstract val image: Int
+    abstract val startTime: String
+    abstract val endTime: String
 
-data class Lesson (
-    val name:String,
-    val teacher:String="",
-    val image:Int,
-    val startTime:String="",
-    val endTime:String=""
-)
+    override fun compareTo(other: Lesson): Int {
+        return converterStringToTime(startTime).secondOfMinute.compareTo(converterStringToTime(other.startTime).secondOfMinute)
+    }
+}
