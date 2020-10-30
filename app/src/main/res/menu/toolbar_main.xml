@@ -6,11 +6,11 @@
         android:icon="@drawable/outline_search_white_24dp"
         android:title="@string/search_title"
         app:showAsAction="ifRoom"
-        app:actionViewClass="android.widget.SearchView" />
+         />
     <item
         android:id="@+id/filter"
         android:title="@string/filter_title"
-        android:icon="@drawable/icon_filter"
+        android:icon="@drawable/filter_icon"
         app:showAsAction="ifRoom"
         />
     <item android:id="@+id/user"

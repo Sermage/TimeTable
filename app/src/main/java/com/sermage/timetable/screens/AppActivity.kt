@@ -2,7 +2,6 @@ package com.sermage.timetable.screens
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
@@ -14,15 +13,14 @@ import kotlinx.android.synthetic.main.tab_item.view.*
 import net.danlew.android.joda.JodaTimeAndroid
 
 class AppActivity : AppCompatActivity() {
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         JodaTimeAndroid.init(this)
+        supportActionBar?.title = getString(R.string.home_title)
         val tabLayout: TabLayout = tabLayout
         val viewPager: ViewPager2 = viewPager
-        viewPager.isUserInputEnabled=false
+        viewPager.isUserInputEnabled = false
         viewPager.adapter = FragmentPagerAdapter(this)
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             when (position) {
@@ -41,12 +39,15 @@ class AppActivity : AppCompatActivity() {
                 2 -> {
                     tab.setCustomView(R.layout.tab_item)
                     tab.customView?.tab_icon?.setImageResource(R.drawable.baseline_list_alt_white_36dp)
+                    tab.customView?.tab_title?.visibility = View.GONE
+                    tab.customView?.tab_title?.text = getString(R.string.notes_title)
 
                 }
                 3 -> {
                     tab.setCustomView(R.layout.tab_item)
                     tab.customView?.tab_icon?.setImageResource(R.drawable.baseline_star_border_white_36dp)
-
+                    tab.customView?.tab_title?.visibility = View.GONE
+                    tab.customView?.tab_title?.text = getString(R.string.rating_title)
                 }
             }
 
@@ -57,6 +58,12 @@ class AppActivity : AppCompatActivity() {
                     this?.visibility = View.VISIBLE
                 }
                 tab?.customView?.tab_icon?.setColorFilter(resources.getColor(R.color.light_green))
+                when (tab?.position) {
+                    0 -> supportActionBar?.title = getString(R.string.home_title)
+                    1 -> supportActionBar?.title = getString(R.string.classes_title)
+                    2 -> supportActionBar?.title = getString(R.string.notes_title)
+                    3 -> supportActionBar?.title = getString(R.string.rating_title)
+                }
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {

@@ -19,8 +19,4 @@
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="toolbarTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="iconTint">@color/white</item>
-    </style>
-
 </resources>

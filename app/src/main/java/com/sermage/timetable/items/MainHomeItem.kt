@@ -6,20 +6,24 @@ import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import com.xwray.groupie.kotlinandroidextensions.Item
 import kotlinx.android.synthetic.main.main_home_item.*
 
-class MainHomeItem(private val items:List<Item>):Item() {
+class MainHomeItem(private val items: List<Item>) : Item() {
 
-    var itemListener:OnItemListener?=null
+    var itemListener: OnItemListener? = null
 
-    interface OnItemListener{
-        fun onItemClick(item:Item)
+    interface OnItemListener {
+        fun onItemClick(item: Item)
     }
+
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
-        viewHolder.recyclerViewItems.adapter=GroupAdapter<GroupieViewHolder>().apply {
+        val groupAdapter=GroupAdapter<GroupieViewHolder>()
+        viewHolder.recyclerViewItems.adapter = groupAdapter.apply {
             addAll(items)
             setOnItemClickListener { item, view ->
                 itemListener?.onItemClick(item as Item)
             }
         }
+
     }
+
     override fun getLayout(): Int = R.layout.main_home_item
 }

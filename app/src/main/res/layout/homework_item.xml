@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     app:cardBackgroundColor="@color/darkgrey"
     app:cardCornerRadius="30dp"
-   android:layout_margin="24dp"
+    android:layout_margin="24dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -79,4 +79,4 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+</com.google.android.material.card.MaterialCardView>

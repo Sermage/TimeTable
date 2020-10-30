@@ -89,7 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="319dp" />
+            app:layout_constraintGuide_percent="0.8" />
 
         <LinearLayout
             android:id="@+id/viewIsRemote"
@@ -99,7 +99,6 @@
             android:rotation="90"
             android:background="@color/blue"
             android:padding="24dp"
-            android:visibility="gone"
             app:layout_constraintStart_toEndOf="@id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -125,5 +124,5 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </com.google.android.material.card.MaterialCardView>
+</com.google.android.material.card.MaterialCardView>
 

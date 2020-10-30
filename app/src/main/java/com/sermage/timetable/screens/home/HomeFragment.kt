@@ -7,9 +7,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.sermage.timetable.R
-import com.sermage.timetable.data.pojo.Exams
 import com.sermage.timetable.items.*
-import com.sermage.timetable.screens.AppActivity
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Section
@@ -27,12 +25,11 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         groupAdapter = GroupAdapter()
-        val appActivity = activity as AppActivity
-        appActivity.supportActionBar?.title = "Home"
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.toolbar_main,menu)
+        inflater.inflate(R.menu.toolbar_main, menu)
         super.onCreateOptionsMenu(menu, inflater)
 
     }
@@ -48,13 +45,15 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
-        val recyclerViewHome=view.recyclerViewHome
+        val recyclerViewHome = view.recyclerViewHome
         recyclerViewHome.adapter = groupAdapter
-        //the first section with timer
-        Section().apply {
-            add(TimerItem(Exams(("2021-01-12"))))
-            groupAdapter.add(this)
-        }
+        viewModel.getExams().observe(viewLifecycleOwner, {
+            //the first section with timer
+            Section().apply {
+                add(TimerItem(it[0]))
+                groupAdapter.add(this)
+            }
+        })
         //getting data for the second section
         viewModel.getLessons().observe(viewLifecycleOwner, {
             val listItems = mutableListOf<ClassItem>()
@@ -80,7 +79,7 @@ class HomeFragment : Fragment() {
             }
             //the second section with classes
             Section().apply {
-                setHeader(HeaderItem(SECTION_2_TITLE, "${it.size} classes today"))
+                setHeader(HeaderItem(getString(R.string.classes_title), "${it.size} classes today"))
                 add(classes)
                 groupAdapter.add(this)
             }
@@ -94,16 +93,11 @@ class HomeFragment : Fragment() {
             val homework = MainHomeItem(listItems)
             //the third section with homework
             Section().apply {
-                setHeader(HeaderItem(SECTION_3_TITLE))
+                setHeader(HeaderItem(getString(R.string.homework_title)))
                 add(homework)
                 groupAdapter.add(this)
             }
         })
-    }
-
-    companion object {
-        private const val SECTION_2_TITLE = "Classes"
-        private const val SECTION_3_TITLE = "Homework"
     }
 
 }
